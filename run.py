@@ -67,6 +67,15 @@ def update_worksheet(data, worksheet):
     worksheet.append_row(data)
     print(f"{worksheet} worksheet updated successfully.\n")
 
+def get_last_5_entries_sales():
+
+    sales = SHEET.worksheet('sales')
+    columns = []
+    for col in range(1, 7):
+        column = sales.col_values(col)
+        columns.append(column[-5:])
+    return columns
+
 def main():
     data = get_sales_data()
     sales_data = [int(num) for num in data]
@@ -75,7 +84,9 @@ def main():
     update_worksheet(new_surplus_data, "surplus")
 
 print("Welcome to Love sandwiches Data Automation.\n")
-main()
+#main()
+
+sales_columns = get_last_5_entries_sales()
 
 
 
